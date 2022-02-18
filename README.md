@@ -19,3 +19,9 @@ Improve discoverability and traceability of the projects developed, running and 
 ## Tool description
 
 Simple website similar to https://ecosystem.filecoin.io/ for navigating across existing Tools → Github Projects → Consumer use-cases in Protocol Labs for better structure and love to the projects being created in PL and its community
+
+## Initial project idea brainstorming
+
+[Miro board](https://miro.com/app/board/uXjVON8w_Ag=/)
+
+![image](https://user-images.githubusercontent.com/45440034/154592970-5e596681-bb13-49e6-86d9-6b2c9e659d81.png)
