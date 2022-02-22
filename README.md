@@ -8,6 +8,13 @@ There are so many cool ideas and project happening at PL, but it is hard to navi
 
 Improve discoverability and traceability of the projects developed, running and depricated by people at Protocol Labs without the need for manual db management
 
+Valuable projects would surface more easily, get more contributions, and we'd minimize the amount of energy "wasted" reinventing things in the web3 industry.
+
+Plus:
+
+- More developers will create projects and apps using PL ecosystem if docs are easily to find / easily to read
+- You can view a collection of PL projects in a single place, and navigate to each of them easily. The index/list/collection should include their github stars, health, activity, etc..
+- You could also filter based on language, category or other -- e.g. more contributors & attention for projects
 
 ## Key features
 
