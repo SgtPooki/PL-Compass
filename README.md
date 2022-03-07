@@ -1,5 +1,7 @@
 # PL Compass project (Launchpad)
 
+Check out the published site on https://pl-compass.on.fleek.co/
+
 ## Problem statement
 
 There are so many cool ideas and project happening at PL, but it is hard to navigate and understand what is happening where and what was already done/being in progress
