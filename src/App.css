@@ -1,3 +1,6 @@
+@import 'tachyons'; /* Optional, jolly good tho */
+@import 'ipfs-css';
+
 .App {
   text-align: center;
 }
@@ -35,4 +38,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.left--3 {
+    left: -3rem;
+}
+
+.bottom-4 {
+    bottom: 4rem;
 }
