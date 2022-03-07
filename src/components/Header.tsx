@@ -5,26 +5,28 @@ const Header = () => (
       href="#"
       title="Home"
     >
-      <h2 className="ma0 montserrat aqua">PL-Compass</h2>
+      <a href="/" className="link">
+        <h2 className="ma0 montserrat aqua">PL-Compass</h2>
+      </a>
     </a>
     <div className="db dtc-l v-mid w-100 w-75-l tc tr-l">
       <a
         className="link dim dark-gray f6 f5-l dib mr3 mr4-l"
-        href="#"
+        href="/stats"
         title="Stats"
       >
         Stats
       </a>
       <a
         className="link dim dark-gray f6 f5-l dib mr3 mr4-l"
-        href="#"
+        href="/search"
         title="Search"
       >
         Search
       </a>
       <a
         className="link dim dark-gray f6 f5-l dib mr3 mr4-l"
-        href="#"
+        href="/about"
         title="About"
       >
         About
