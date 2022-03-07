@@ -44,3 +44,15 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+# .envrc stuff
+
+First, run the following:
+
+```bash
+cp .envrc.copy .envrc
+```
+
+Then replace `REPLACE_WITH_YOUR_PERSONAL_ACCESS_TOKEN_FROM_GITHUB` in that file with a new personal access token obtained from https://github.com/settings/tokens/.
+
+The file `.envrc.private` is ignored by git, so it will not be exposed whenever you push your changes to the public repo.

@@ -6,7 +6,7 @@ There are so many cool ideas and project happening at PL, but it is hard to navi
 
 ## Project statement
 
-Improve discoverability and traceability of the projects developed, running and depricated by people at Protocol Labs without the need for manual db management
+Improve discoverability and traceability of the projects developed, running and deprecated by people at Protocol Labs without the need for manual db management
 
 Valuable projects would surface more easily, get more contributions, and we'd minimize the amount of energy "wasted" reinventing things in the web3 industry.
 
@@ -19,9 +19,9 @@ Plus:
 ## Key features
 
 - Internal focus → People in PL should be able to figure out what things are being developed right now and navigate to find the useful resources for them easily
-- Simple update → Databases with multiple source of input are hard to maintain, this process should be automated as much as possiple
+- Simple update → Databases with multiple source of input are hard to maintain, this process should be automated as much as possible
 - Simple discoverability → Representation of the information should be convenient for users to navigate through, finding relevant information through queries, labels or mind maps
-- Simple traceability → Figure out who was the person responsible for the project and what were all the contributers to it during its lifetime
+- Simple traceability → Figure out who was the person responsible for the project and what were all the contributors to it during its lifetime
 
 ## Tool description
 
