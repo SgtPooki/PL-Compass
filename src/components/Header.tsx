@@ -1,36 +1,37 @@
+import { Link } from 'react-router-dom'
+
 const Header = () => (
   <nav className="db dt-l w-100 border-box pa3 ph5-l">
-    <a
+    <Link
       className="db dtc-l v-mid mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l"
-      href="#"
+      to="home"
       title="Home"
     >
-      <a href="/" className="link">
-        <h2 className="ma0 montserrat aqua">PL-Compass</h2>
-      </a>
-    </a>
+      <h2 className="ma0 montserrat aqua">PL-Compass</h2>
+    </Link>
     <div className="db dtc-l v-mid w-100 w-75-l tc tr-l">
-      <a
+      <Link
         className="link dim dark-gray f6 f5-l dib mr3 mr4-l"
-        href="/stats"
+        to="stats"
         title="Stats"
       >
         Stats
-      </a>
-      <a
+      </Link>
+      <Link
         className="link dim dark-gray f6 f5-l dib mr3 mr4-l"
-        href="/search"
+        to="search"
         title="Search"
       >
         Search
-      </a>
-      <a
+      </Link>
+      <Link
         className="link dim dark-gray f6 f5-l dib mr3 mr4-l"
-        href="/about"
+        to="about"
         title="About"
       >
         About
-      </a>
+      </Link>
+      <Link to="stats">test link</Link>
     </div>
   </nav>
 )

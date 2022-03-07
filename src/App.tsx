@@ -1,25 +1,30 @@
 import React from 'react'
-import logo from './logo.svg'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Home } from './pages/Home'
+import { Stats } from './pages/Stats'
+import { Search } from './pages/Search'
+import { About } from './pages/About'
 
 import './App.css'
 import { Header } from './components/Header'
 import { GithubRibbon } from './components/GithubRibbon/GithubRibbon'
 function App() {
   return (
-    <div className="App">
-      <GithubRibbon />
-      <Header />
-      <BrowserRouter>
+    <HashRouter>
+      <div className="App">
+        <GithubRibbon />
+        <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Route path="expenses" element={<Expenses />} /> */}
-          {/* <Route path="invoices" element={<Invoices />} /> */}
+          <Route path="*" element={<Navigate to="/home" />} />
+          <Route path="home" element={<Home />} />
+          <Route path="stats" element={<Stats />} />
+          <Route path="search" element={<Search />} />
+          <Route path="about" element={<About />} />
         </Routes>
-      </BrowserRouter>
-    </div>
+      </div>
+    </HashRouter>
   )
 }
 
