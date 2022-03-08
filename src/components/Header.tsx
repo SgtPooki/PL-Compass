@@ -31,7 +31,6 @@ const Header = () => (
       >
         About
       </Link>
-      <Link to="stats">test link</Link>
     </div>
   </nav>
 )
