@@ -1,9 +1,13 @@
 import { RepositoriesTable } from '../components/RepositoriesTable'
+
+import { ErrorBoundary } from '../components/ErrorBoundary'
 const Home = () => (
   <>
     <h1>Home</h1>
     <div>Repositories</div>
-    <RepositoriesTable />
+    <ErrorBoundary>
+      <RepositoriesTable />
+    </ErrorBoundary>
   </>
 )
 
