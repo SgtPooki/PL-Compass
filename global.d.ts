@@ -1,5 +1,7 @@
 declare module 'orbit-db'
 
+declare module '@dutu/rate-limiter'
+
 declare namespace EcosystemResearch {
   interface Repository {
     archived: boolean

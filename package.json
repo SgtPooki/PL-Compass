@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@dutu/rate-limiter": "github:dutu/rate-limiter#v1.3.0",
     "@octokit/graphql": "^4.8.0",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
