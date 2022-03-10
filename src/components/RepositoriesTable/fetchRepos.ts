@@ -1,15 +1,16 @@
 const ecosystemDashboardDomains = [
-  'ecosystem-dashboard.com',
-  'filecoin.ecosystem-dashboard.com',
-  'libp2p.ecosystem-dashboard.com',
+  'ecosystem-dashboard.com', //ipfs
+  'filecoin.ecosystem-dashboard.com', //filecoin
+  'libp2p.ecosystem-dashboard.com', //libp2p
 ]
 
 const buildUrls = () => {
   const urls: string[] = []
   ecosystemDashboardDomains.forEach((domain) => {
     urls.push(`https://${domain}/repositories`)
-    urls.push(`https://${domain}/collabs/repositories`)
-    urls.push(`https://${domain}/community/repositories`)
+    // TODO: Uncomment when we can differentiate between core/collab/community repos across all orgs
+    // urls.push(`https://${domain}/collabs/repositories`)
+    // urls.push(`https://${domain}/community/repositories`)
   })
 
   return urls

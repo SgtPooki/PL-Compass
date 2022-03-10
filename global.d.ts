@@ -40,4 +40,39 @@ declare namespace EcosystemResearch {
     triage: boolean //false
     updated_at: Date //"2022-02-28T04:50:43.183Z"
   }
+
+  interface ContributorIssue {
+    id: number //325773
+    title: string //'fix: Check total connections opened.'
+    body: string | null // null
+    state: string //'closed'
+    number: number // 39
+    html_url: string // 'https://github.com/web3-storage/ipfs-elastic-provider-bitswap-peer/pull/39'
+    comments_count: number //0
+    user: string //'ShogunPanda'
+    repo_full_name: string // 'web3-storage/ipfs-elastic-provider-bitswap-peer'
+    closed_at: Date // '2022-03-09T09:36:31.000Z'
+    created_at: Date // '2022-03-09T09:36:28.000Z'
+    updated_at: Date // '2022-03-09T09:36:59.000Z'
+    org: string // 'web3-storage'
+    collabs: unknown[] // []
+    milestone_name: null
+    milestone_id: null
+    labels: unknown[] // []
+    locked: boolean // false
+    merged_at: Date // '2022-03-09T09:36:31.000Z'
+    draft: boolean // false
+    first_response_at: null
+    response_time: null
+    github_id: number // 1163701341
+    last_synced_at: Date // '2022-03-09T23:18:36.498Z'
+    board_ids: unknown[] // []
+    review_time: null
+    review_requested_at: null
+  }
+
+  interface ContributorDetails {
+    events: null
+    issues: ContributorIssue[]
+  }
 }

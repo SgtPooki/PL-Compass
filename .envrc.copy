@@ -1,0 +1,4 @@
+
+# github personal access token.
+# Get yours at https://github.com/settings/tokens/
+export GITHUB_PAT="REPLACE_WITH_YOUR_PERSONAL_ACCESS_TOKEN_FROM_GITHUB"

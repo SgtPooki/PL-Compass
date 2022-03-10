@@ -14,6 +14,7 @@ const RepositoryRow = ({ row }: { row: Row<EcosystemResearch.Repository> }) => {
       <td className="pa3">{props.score}</td>
       <td className="pa3">{props.stargazers_count}</td>
       <td className="pa3">{props.subscribers_count}</td>
+      <td className="pa3">{props.contributors}</td>
     </tr>
   )
 }
