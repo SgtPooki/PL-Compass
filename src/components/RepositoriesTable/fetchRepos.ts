@@ -1,3 +1,5 @@
+import { filter } from 'lodash'
+
 const ecosystemDashboardDomains = [
   'ecosystem-dashboard.com', //ipfs
   'filecoin.ecosystem-dashboard.com', //filecoin
@@ -71,8 +73,14 @@ const fetchRepos = async () => {
       }))
     )
   }
-
-  return repos
+  const repoNames = new Set<string>()
+  return filter<EcosystemResearch.Repository>(repos, (repo) => {
+    if (repoNames.has(repo.full_name)) {
+      return false
+    }
+    repoNames.add(repo.full_name)
+    return true
+  })
 }
 
 export { fetchRepos }
