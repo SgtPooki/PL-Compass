@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useAsync } from 'react-async'
 import {
   Column,
@@ -8,6 +8,7 @@ import {
   useSortBy,
   useFilters,
   useGlobalFilter,
+  useAsyncDebounce,
 } from 'react-table'
 
 import { fetchRepos } from './fetchRepos'
@@ -125,6 +126,37 @@ function fuzzyTextFilterFn(rows: any, id: any, filterValue: any) {
 
 // Let the table remove the filter if the string is empty
 fuzzyTextFilterFn.autoRemove = (val: any) => !val
+
+function GlobalFilter({
+  preGlobalFilteredRows,
+  globalFilter,
+  setGlobalFilter,
+}: any) {
+  const count = preGlobalFilteredRows.length
+  const [value, setValue] = useState(globalFilter)
+  const onChange = useAsyncDebounce((value) => {
+    setGlobalFilter(value || undefined)
+  }, 200)
+
+  return (
+    <span>
+      Global Search:{' '}
+      <input
+        value={value || ''}
+        onChange={(e) => {
+          setValue(e.target.value)
+          onChange(e.target.value)
+        }}
+        placeholder={`${count} records...`}
+        style={{
+          fontSize: '1.1rem',
+          border: '0',
+        }}
+      />
+    </span>
+  )
+}
+
 const Table = ({
   columns,
   data,
@@ -190,6 +222,20 @@ const Table = ({
             {...getTableProps()}
           >
             <thead>
+              <tr>
+                <th
+                  colSpan={visibleColumns.length}
+                  style={{
+                    textAlign: 'left',
+                  }}
+                >
+                  <GlobalFilter
+                    preGlobalFilteredRows={preGlobalFilteredRows}
+                    globalFilter={state.globalFilter}
+                    setGlobalFilter={setGlobalFilter}
+                  />
+                </th>
+              </tr>
               {headerGroups.map((headerGroup) => (
                 <tr
                   className="stripe-dark"
