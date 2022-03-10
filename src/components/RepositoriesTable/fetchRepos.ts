@@ -65,13 +65,15 @@ const fetchRepos = async () => {
     repos.push(...reposRaw)
   }
   const repoNames = new Set<string>()
-  return filter<EcosystemResearch.Repository>(repos, (repo) => {
+  const dedupedRepos = filter<EcosystemResearch.Repository>(repos, (repo) => {
     if (repoNames.has(repo.full_name)) {
       return false
     }
     repoNames.add(repo.full_name)
     return true
   })
+
+  return dedupedRepos
 }
 
 export { fetchRepos }

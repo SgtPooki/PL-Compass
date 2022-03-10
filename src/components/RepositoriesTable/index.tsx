@@ -42,6 +42,9 @@ const RepositoriesTable = () => {
       {
         Header: 'Contributors (github link)',
       },
+      {
+        Header: 'Top 3 contributors',
+      },
     ],
     []
   )

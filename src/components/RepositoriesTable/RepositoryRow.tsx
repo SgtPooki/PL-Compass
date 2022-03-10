@@ -1,5 +1,5 @@
 import { Row } from 'react-table'
-
+import { Top3Contributors } from './Top3Contributors'
 const RepositoryRow = ({ row }: { row: Row<EcosystemResearch.Repository> }) => {
   const props = row.values as EcosystemResearch.Repository
   return (
@@ -18,6 +18,9 @@ const RepositoryRow = ({ row }: { row: Row<EcosystemResearch.Repository> }) => {
         <a href={`https://github.com/${props.full_name}/contributors`}>
           {props.full_name}/contributors
         </a>
+      </td>
+      <td className="pa3">
+        <Top3Contributors repoName={props.full_name} />
       </td>
     </tr>
   )
