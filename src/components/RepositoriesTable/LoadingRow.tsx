@@ -1,5 +1,3 @@
-import { Row } from 'react-table'
-
 const LoadingRow = ({ colSpan }: { colSpan: number }) => {
   return (
     <tr className="stripe-dark">

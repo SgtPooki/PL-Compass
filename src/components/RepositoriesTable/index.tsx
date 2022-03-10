@@ -39,6 +39,9 @@ const RepositoriesTable = () => {
         Header: 'Subscribers',
         accessor: 'subscribers_count',
       },
+      {
+        Header: 'Contributors (github link)',
+      },
     ],
     []
   )

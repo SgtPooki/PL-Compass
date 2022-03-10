@@ -64,14 +64,7 @@ const fetchRepos = async () => {
   const repos: EcosystemResearch.Repository[] = []
   for await (const url of buildUrls()) {
     const reposRaw = await walkUrl(new URL(`${url}.json?order=desc&sort=score`))
-
-    repos.push(
-      ...reposRaw.map((r) => ({
-        ...r,
-        github_url: `https://github.com/${r.full_name}`,
-        org_url: `https://github.com/${r.org}`,
-      }))
-    )
+    repos.push(...reposRaw)
   }
   const repoNames = new Set<string>()
   return filter<EcosystemResearch.Repository>(repos, (repo) => {

@@ -1,7 +1,7 @@
 import { Row } from 'react-table'
 
 const RepositoryRow = ({ row }: { row: Row<EcosystemResearch.Repository> }) => {
-  const props = row.values
+  const props = row.values as EcosystemResearch.Repository
   return (
     <tr className="stripe-dark">
       <td className="pa3">
@@ -14,7 +14,11 @@ const RepositoryRow = ({ row }: { row: Row<EcosystemResearch.Repository> }) => {
       <td className="pa3">{props.score}</td>
       <td className="pa3">{props.stargazers_count}</td>
       <td className="pa3">{props.subscribers_count}</td>
-      <td className="pa3">{props.contributors}</td>
+      <td className="pa3">
+        <a href={`https://github.com/${props.full_name}/contributors`}>
+          {props.full_name}/contributors
+        </a>
+      </td>
     </tr>
   )
 }
