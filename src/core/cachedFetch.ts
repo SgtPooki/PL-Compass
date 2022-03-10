@@ -6,13 +6,42 @@ const EXPIRE_MIN = 1440 // one whole day
 
 const hostnameLimiters = new Map<string, RateLimiter>()
 
-// const defaultRateLimiter = new TokenBucketLimiter({
-//   bucketSize: 1,
-//   tokensPerInterval: 1,
-//   interval: 1000 * 1,
-//   stopped: false,
-// })
-// hostnameLimiters.set('default', defaultRateLimiter)
+hostnameLimiters.set(
+  'api.github.com',
+  new TokenBucketLimiter({
+    bucketSize: 1,
+    tokensPerInterval: 1,
+    interval: 1000 * 60, // 60 tokens every 60 minutes, or 1 token every minute
+    stopped: false,
+  })
+)
+hostnameLimiters.set(
+  'ecosystem-dashboard.com',
+  new TokenBucketLimiter({
+    bucketSize: 1,
+    tokensPerInterval: 1,
+    interval: 1000 * 0.5,
+    stopped: false,
+  })
+)
+hostnameLimiters.set(
+  'libp2p.ecosystem-dashboard.com',
+  new TokenBucketLimiter({
+    bucketSize: 1,
+    tokensPerInterval: 1,
+    interval: 1000 * 0.5,
+    stopped: false,
+  })
+)
+hostnameLimiters.set(
+  'filecoin.ecosystem-dashboard.com',
+  new TokenBucketLimiter({
+    bucketSize: 1,
+    tokensPerInterval: 1,
+    interval: 1000 * 0.5,
+    stopped: false,
+  })
+)
 
 type CachedFetchOptions =
   | (Parameters<typeof fetch>[1] & {
@@ -55,6 +84,8 @@ const cachedFetch = async (
   const cacheKey = url
   const cached = localStorage.getItem(cacheKey)
   const whenCached = localStorage.getItem(cacheKey + ':ts')
+  //
+  //
   if (cached !== null && whenCached !== null) {
     // it was in sessionStorage! Yay!
     // Even though 'whenCached' is a string, this operation
@@ -63,12 +94,19 @@ const cachedFetch = async (
     const age = (Date.now() - Number(whenCached)) / 1000
     if (age < expiry) {
       const response = new Response(new Blob([cached]))
-      return Promise.resolve(response)
+
+      return response
     } else {
       // We need to clean up this old key
       localStorage.removeItem(cacheKey)
       localStorage.removeItem(cacheKey + ':ts')
     }
+  }
+  if (limiter.isStopped) {
+    return {
+      json: () => [] as GitHub.RepoContributor[],
+    }
+    // throw new Error('Limiter was stopped due to 403 (rate limiting?)')
   }
   await limiter.awaitTokens(1)
   const haveToken = await limiter.tryRemoveTokens(1)
@@ -98,6 +136,10 @@ const cachedFetch = async (
             localStorage.setItem(cacheKey + ':ts', Date.now().toString())
           })
       }
+    } else if (response.status === 403) {
+      limiter.stop()
+    } else if (!response.ok) {
+      limiter.stop()
     }
     return response
   })

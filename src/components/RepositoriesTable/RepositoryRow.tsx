@@ -1,7 +1,8 @@
 import { Row } from 'react-table'
 import { Top3Contributors } from './Top3Contributors'
-const RepositoryRow = ({ row }: { row: Row<EcosystemResearch.Repository> }) => {
-  const props = row.values as EcosystemResearch.Repository
+const RepositoryRow = ({ repo }: { repo: EcosystemResearch.Repository }) => {
+  const props = repo
+
   return (
     <tr className="stripe-dark">
       <td className="pa3">
@@ -20,7 +21,7 @@ const RepositoryRow = ({ row }: { row: Row<EcosystemResearch.Repository> }) => {
         </a>
       </td>
       <td className="pa3">
-        <Top3Contributors repoName={props.full_name} />
+        <Top3Contributors contributors={props.contributors} />
       </td>
     </tr>
   )
