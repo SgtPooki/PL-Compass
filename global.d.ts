@@ -2,6 +2,10 @@ declare module 'orbit-db'
 
 declare module '@dutu/rate-limiter'
 
+declare interface RateLimiter {
+  awaitTokens: (count: number) => Promise<void>
+}
+
 declare namespace EcosystemResearch {
   interface Repository {
     archived: boolean
