@@ -1,4 +1,5 @@
 import { filter } from 'lodash'
+import { cachedFetch } from '../../core/cachedFetch'
 
 const ecosystemDashboardDomains = [
   'ecosystem-dashboard.com', //ipfs
@@ -28,9 +29,6 @@ const buildUrls = () => {
 // https://ecosystem-research.herokuapp.com/collabs/repositories?page=1&per_page=20
 
 // Filter out ipfs-inactive repos.. these are archived and inactive repos that are no longer maintained.
-import fetchPonyFill from 'fetch-ponyfill'
-
-const { fetch } = fetchPonyFill()
 
 const walkUrl = async (url: URL, page = 1, per_page = 20) => {
   // const url = new URL(repoUrl)
@@ -50,7 +48,7 @@ const walkUrl = async (url: URL, page = 1, per_page = 20) => {
     url.searchParams.set('per_page', per_page.toString())
   }
 
-  const result = await fetch(url.toString())
+  const result = await cachedFetch(url.toString())
   const repos: EcosystemResearch.Repository[] = await result.json()
 
   if (!result.ok) {
