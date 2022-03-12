@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useMemo, useState } from 'react'
-import { useAsync } from 'react-async'
 import {
   Column,
   useTable,
@@ -14,12 +13,13 @@ import {
   FilterTypes,
 } from 'react-table'
 
-import { fetchRepos } from './fetchRepos'
 import { RepositoryRow } from './RepositoryRow'
 import { ErrorBoundary } from '../ErrorBoundary'
 import { LoadingRow } from './LoadingRow'
 import { matchSorter } from 'match-sorter'
 import { union } from 'lodash'
+import { useRepos } from '../../core/hooks/useRepos'
+import { MAX_CONTRIBUTORS } from '../../core/constants'
 
 const RepositoriesTable = () => {
   const columns: Column<EcosystemResearch.Repository>[] = useMemo(
@@ -63,7 +63,7 @@ const RepositoriesTable = () => {
         Header: 'Contributors (github link)',
       },
       {
-        Header: 'Top 3 contributors',
+        Header: `Top ${MAX_CONTRIBUTORS} contributors`,
         accessor: 'contributors',
         filter: 'contributors',
         Cell: () => {
@@ -73,13 +73,12 @@ const RepositoriesTable = () => {
     ],
     []
   )
-  const { data: rowData, error } = useAsync<EcosystemResearch.Repository[]>({
-    promiseFn: fetchRepos,
-  })
 
-  const data = rowData ?? ([] as EcosystemResearch.Repository[])
+  const { repos } = useRepos()
 
-  if (error) return <span>{error.message}</span>
+  const data = repos ?? ([] as EcosystemResearch.Repository[])
+
+  // if (error) return <span>{error.message}</span>
 
   return <Table columns={columns} data={data} />
 }
@@ -235,12 +234,12 @@ const Table = ({
           if (!isValidContributors) {
             continue
           }
-          const top3Contributors = contributors
-            .slice(0, 3)
+          const topContributors = contributors
+            .slice(0, MAX_CONTRIBUTORS)
             .map((contributor) => contributor.login.toLowerCase())
 
           if (
-            top3Contributors.find((contributor) =>
+            topContributors.find((contributor) =>
               contributor.includes(filterValue.toLowerCase())
             )
           ) {
@@ -375,7 +374,7 @@ const Table = ({
                   prepareRow(row)
                   return (
                     <RepositoryRow
-                      repo={row.values as EcosystemResearch.Repository}
+                      repo={row.original as EcosystemResearch.Repository}
                       {...row.getRowProps()}
                     />
                   )

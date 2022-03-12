@@ -7,27 +7,15 @@ declare interface RateLimiter {
 }
 
 declare namespace GitHub {
-  interface RepoContributor {
-    login: string // 'oliveriosousa'
-    id: number // 47525443
-    node_id: string // 'MDQ6VXNlcjQ3NTI1NDQz'
-    avatar_url: string // 'https://avatars.githubusercontent.com/u/47525443?v=4'
-    gravatar_id: string // ''
-    url: string // 'https://api.github.com/users/oliveriosousa'
-    html_url: string // 'https://github.com/oliveriosousa'
-    followers_url: string // 'https://api.github.com/users/oliveriosousa/followers'
-    following_url: string // 'https://api.github.com/users/oliveriosousa/following{/other_user}'
-    gists_url: string // 'https://api.github.com/users/oliveriosousa/gists{/gist_id}'
-    starred_url: string // 'https://api.github.com/users/oliveriosousa/starred{/owner}{/repo}'
-    subscriptions_url: string // 'https://api.github.com/users/oliveriosousa/subscriptions'
-    organizations_url: string // 'https://api.github.com/users/oliveriosousa/orgs'
-    repos_url: string // 'https://api.github.com/users/oliveriosousa/repos'
-    events_url: string // 'https://api.github.com/users/oliveriosousa/events{/privacy}'
-    received_events_url: string // 'https://api.github.com/users/oliveriosousa/received_events'
-    type: string // 'User'
-    site_admin: boolean // false
-    contributions: number // 13
-  }
+  type Endpoints = import('@octokit/types').Endpoints
+
+  type RepoContributor = GetResponseDataTypeFromEndpointMethod<
+    Endpoints['GET /repos/{owner}/{repo}/contributors']
+  >
+
+  type RateLimit = GetResponseDataTypeFromEndpointMethod<
+    Endpoints['GET /rate_limit']
+  >
 }
 
 declare namespace EcosystemResearch {

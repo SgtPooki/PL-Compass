@@ -1,6 +1,7 @@
 import { filter } from 'lodash'
-import { cachedFetch } from '../../core/cachedFetch'
-import { getContributors } from '../../core/github/getContributors'
+import { cachedFetch } from '../cachedFetch'
+import { getContributors } from '../github/getContributors'
+import { addGlobalRepos } from '../hooks/useRepos'
 
 const ecosystemDashboardDomains = [
   'ecosystem-dashboard.com', //ipfs
@@ -32,13 +33,7 @@ ecosystemDashboardDomains.forEach((domain) => {
 // Filter out ipfs-inactive repos.. these are archived and inactive repos that are no longer maintained.
 
 const walkUrl = async (url: URL, page = 1, per_page = 20) => {
-  // const url = new URL(repoUrl)
-  // let page = 1
-
   if (url.searchParams.has('page')) {
-    // if (page !== Number(url.searchParams.get('page'))) {
-    //   url.searchParams.set('page', page.toString())
-    // }
     page = Number(url.searchParams.get('page'))
   } else {
     url.searchParams.set('page', page.toString())
@@ -72,29 +67,17 @@ const walkUrl = async (url: URL, page = 1, per_page = 20) => {
 
     urlsToWalk.push(newUrl.toString())
   }
+
   return repos
 }
 
 const fetchRepos = async () => {
-  const repos: EcosystemResearch.Repository[] = []
   let url: string | undefined = urlsToWalk.shift() as unknown as string
   while (url != null) {
-    const rawRepos = await walkUrl(new URL(`${url}`))
+    addGlobalRepos(await walkUrl(new URL(`${url}`)))
 
-    repos.push(...rawRepos)
     url = urlsToWalk.shift()
-    // url = undefined
   }
-  const repoNames = new Set<string>()
-  const dedupedRepos = filter<EcosystemResearch.Repository>(repos, (repo) => {
-    if (repoNames.has(repo.full_name)) {
-      return false
-    }
-    repoNames.add(repo.full_name)
-    return true
-  })
-
-  return dedupedRepos
 }
 
 export { fetchRepos }

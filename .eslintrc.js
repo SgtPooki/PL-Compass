@@ -2,7 +2,8 @@ module.exports = {
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:jest/recommended',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
+    'plugin:react-hooks/recommended'
   ],
   plugins: ['react', '@typescript-eslint', 'jest'],
   env: {
@@ -32,6 +33,6 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
-    semi: ["error", "never"]
+    semi: ['error', 'never']
   },
 }

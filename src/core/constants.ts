@@ -1,0 +1,3 @@
+const MAX_CONTRIBUTORS = 10
+
+export { MAX_CONTRIBUTORS }

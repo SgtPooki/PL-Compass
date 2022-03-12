@@ -1,27 +1,25 @@
-import { Row } from 'react-table'
-import { Top3Contributors } from './Top3Contributors'
-const RepositoryRow = ({ repo }: { repo: EcosystemResearch.Repository }) => {
-  const props = repo
+import { TopContributors } from './TopContributors'
 
+const RepositoryRow = ({ repo }: { repo: EcosystemResearch.Repository }) => {
   return (
     <tr className="stripe-dark">
       <td className="pa3">
-        <a href={`https://github.com/${props.full_name}`}>{props.full_name}</a>
+        <a href={`https://github.com/${repo.full_name}`}>{repo.full_name}</a>
       </td>
-      <td className="pa3">{props.description}</td>
+      <td className="pa3">{repo.description}</td>
       <td className="pa3">
-        <a href={`https://github.com/${props.org}`}>{props.org}</a>
+        <a href={`https://github.com/${repo.org}`}>{repo.org}</a>
       </td>
-      <td className="pa3">{props.score}</td>
-      <td className="pa3">{props.stargazers_count}</td>
-      <td className="pa3">{props.subscribers_count}</td>
+      <td className="pa3">{repo.score}</td>
+      <td className="pa3">{repo.stargazers_count}</td>
+      <td className="pa3">{repo.subscribers_count}</td>
       <td className="pa3">
-        <a href={`https://github.com/${props.full_name}/contributors`}>
-          {props.full_name}/contributors
+        <a href={`https://github.com/${repo.full_name}/contributors`}>
+          {repo.full_name}/contributors
         </a>
       </td>
       <td className="pa3">
-        <Top3Contributors contributors={props.contributors} />
+        <TopContributors repo={repo} />
       </td>
     </tr>
   )
